@@ -3,6 +3,10 @@ Example of Dynamic Generation for Submitted Forms by Events in Symfony 6.
 In the moment of exploring this topic, Symfony guidelines are only mentioning
 simple implementation based on POST_SUBMIT event.
 
+# Minimal requirements
+- Symfony 6
+- PHP 8
+
 # How to install
     mkdir symfony-dynamic-forms 
     cd symfony-dynamic-forms
