@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Address selection{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid p-4">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 shadow-lg p-4 mb-5 bg-white rounded">
+        <a href="{{ path('index') }}">BACK</a><br><br>
+            {{ include('test/_form.html.twig') }}
+        </div>
+    </div>
+    <div id="loader"></div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+
+        $(document).ready(function () {
+            let $country = $('.country');
+            $country.change(function() {
+                $('.country-data').hide();
+                $('.country-data').closest('.spinner-wrapper').append('<img class="spinner" src="images/ajax.svg">');
+                let country = $(this);
+                country.prop("disabled", true);
+                let $form = $(this).closest('form');
+                let data = {};
+                data[$country.attr('name')] = $country.val();
+                console.log($form.attr('action'));
+                $.ajax({
+                    url : $form.attr('action') + "?ts="+Date.now(),
+                    type: $form.attr('method'),
+                    data : data,
+                    success: function(html) {
+                        $('.city').replaceWith(
+                            $(html).find('.city')
+                        );
+                        $('.street').replaceWith(
+                            $(html).find('.street')
+                        );
+                        registerCity();
+                        country.prop("disabled", false);
+                        $('.country-data').show();
+                        $('.country-data').closest('.spinner-wrapper').find('img.spinner').remove();
+                    }
+                });
+            });
+            registerCity();
+
+            function registerCity() {
+                let $city = $('.city input');
+                $city.change(function() {
+                    $('.city-data').hide();
+                    $('.city-data').closest('.spinner-wrapper').append('<img class="spinner" src="images/ajax.svg">');
+                    $city.prop("disabled", true);
+                    let $form = $(this).closest('form');
+                    let data = {};
+                    data[$(this).attr('name')] = $(this).val();
+                    data[$('.country').attr('name')] = $('.country').val();
+                    $.ajax({
+                        url : $form.attr('action') + "?ts="+Date.now(),
+                        type: $form.attr('method'),
+                        data : data,
+                        success: function(html) {
+                            $('.street').replaceWith(
+                                $(html).find('.street')
+                            );
+                            $city.prop("disabled", false);
+                            $('.city-data').show();
+                            $('.city-data').closest('.spinner-wrapper').find('img.spinner').remove();
+                        }
+                    });
+                });
+            }
+
+        });
+
+    </script>
+
+{% endblock %}

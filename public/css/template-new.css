@@ -1,0 +1,88 @@
+/* Yubico Green #9aca3c */
+/* Yubico Blue #325F74 */
+/* Yubico Grey #939292 */
+/* Yubico Ocean #0080ac */
+
+a.logo {
+    font-size: 40px;
+    margin: 10px 0;
+    font-weight: 800;
+}
+a.logo, a.logo:hover {
+    text-decoration: none;
+}
+
+a.logo span {
+    color: #9aca3c;
+}
+
+.yc-primary {
+    background-color: #9aca3c;
+}
+
+.yc-secondary {
+    background-color: #325F74;
+}
+
+.yc-third {
+    background-color: #eeeeee;
+}
+
+.yt-primary {
+    color: #ffffff;
+}
+
+.yt-secondary {
+    color: #9aca3c;
+}
+
+.yt-third {
+    color: #325F74;
+}
+
+.yt-fourth {
+    color: #666666;
+}
+
+body {
+    color: #666666;
+}
+
+a {
+    color: #0080ac;
+}
+
+a:hover {
+    color: #325F74;
+}
+
+h2 {
+    color: #325F74;
+}
+
+main {
+    overflow: hidden;
+}
+
+.zigzag-bottom {
+    bottom: -50px;
+    height: 130px;
+    left: -5%;
+    position: relative;
+    transform: rotate(3deg);
+    width: 108%;
+    z-index: -9;
+}
+
+.nav-item:hover {
+    text-decoration: underline;
+    color: #325F74;
+}
+
+.nav-link {
+    color: #0080ac;
+}
+
+.nav-link:hover {
+    color: #325F74;
+}
